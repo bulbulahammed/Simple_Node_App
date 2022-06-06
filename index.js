@@ -8,9 +8,11 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use((req,res,next)=>{
-    console.log('Time:', Date.now())
-    next()
+// To use Static file in express app
+app.use(express.static("public"));
+
+app.get("/",(req,res)=>{
+    res.sendFile(__dirname + "/index.html")
 })
 
 app.listen(PORT,()=>{
